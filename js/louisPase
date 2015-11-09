@@ -1,0 +1,64 @@
+<html>
+
+    <head>
+        <script type="text/javascript" src="tools.js"></script>
+        <script type="text/javascript" src="testing.js"></script>
+        <script type="text/javascript" src="jquery.js"></script>
+
+        <style>
+
+        </style>
+    </head>
+
+    <body onload="loadContent()">
+
+    <script>
+
+
+
+    function loadContent() {
+        var name = "newhand7";
+        var area = "na";
+        var q = "https://na.api.pvp.net/api/lol/"+area+"/v1.4/summoner/by-name/" + name + "?api_key=d80c7afd-f3dd-452f-8c10-64ad4c2a8ea8";
+        var id;
+
+
+    $.getJSON( q, function(data, textStatus, jqXHR){
+
+            $.each(data,function(key,value){
+                //alert(value.id);
+                id = value.id;
+
+            });
+
+    var q2 = "https://na.api.pvp.net/api/lol/na/v1.3/game/by-summoner/"+id+"/recent?api_key=d80c7afd-f3dd-452f-8c10-64ad4c2a8ea8";
+    $.getJSON( q2, function(data2, textStatus, jqXHR){
+
+        $.each(data2.games,function(key,value){
+            $("#info").append(value.gameId+"<br/><hr/>");
+            $.each(value.stats,function(key,value){
+                reg=/item[0-9]{1}/;
+                if(reg.test(key))
+                {
+                    var pic = '<img src="http://ddragon.leagueoflegends.com/cdn/5.22.1/img/item/' + value +'.png"/>';
+                    $("#info").append(pic);
+                    //$("#info").append(value + "<br/>");
+                }
+            });
+        });
+
+
+        $("#info").append(data2);
+    });
+
+});
+
+    }
+
+
+        </script>
+    <div id="info"></div>
+
+    </body>
+
+</html>

@@ -1,0 +1,68 @@
+<!doctype html>
+
+<head>
+  <title>League of Legends API!</title>
+
+  <script src="bower_components/jquery/dist/jquery.js"></script>
+  <script src="bower_components/angular/angular.min.js"></script>
+  <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="bower_components/ionic/release/js/ionic.min.js"></script>
+  <link href="bower_components/ionic/release/css/ionic.min.css" rel="stylesheet" type="text/css" />
+  <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="css/stylesheet.css" />
+  <!-- <script src="js/script.js"></script> -->
+</head>
+
+<body ng-app="app">
+  <div class="container">
+    <div class="controllerContainer" ng-controller="MainController">
+      <div class="jumbotron jumbotron-extra">
+        <h1>See your match history!</h1>
+        <input ng-model="username" type="text" />
+        <p><a class="btn btn-primary btn-lg" ng-click="firstInit(0);" role="button">Enter your username!</a></p>
+      </div>
+      <!-- Single Card start -->
+      <div class="card row" id="gameCard">
+        <div class='item item-text-wrap text-center col-md-3 pull-left'>
+          <img class='img-circle' ng-src="{{champImg}}" />
+          <p>{{champName}}</p>
+          <!--<p>{{username}}</p>-->
+        </div>
+        {{username}}
+        <div class='col-md-6 pull-left'>
+          <ul class="list-inline text-center">
+            <li ng-repeat='item in itemsLinks' class="margin-top">
+              <img class='img-rounded' ng-src="{{item}}" />
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- Single Card end -->
+
+    <!-- Single Card Start -->
+    <div class="card row" ng-controller="MainController" ng-repeat="a in [1, 2, 3] track by $index">
+      <div ng-hide="true">{{count = a}}</div>
+      <div class="item item-text-wrap text-center col-md-3 pull-left">
+        <img class='img-circle' ng-src="{{champImg}}" />
+        <p>{{champName}}</p>
+        <!--<p>{{username}}</p>-->
+      </div>
+      {{username}}
+      <div class='col-md-6 pull-left'>
+        <ul class="list-inline text-center">
+          <li ng-repeat='item in itemsLinks track by $index' class="margin-top">
+            <img class='img-rounded' ng-src="{{item}}" />
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  </div>
+</body>
+<script src="js/app.js"></script>
+<script src="js/services/services.js"></script>
+<script src="js/controllers/MainController.js"></script>
+
+</html>
